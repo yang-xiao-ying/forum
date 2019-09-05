@@ -1,0 +1,12 @@
+[Unit]
+Description=forum message queue
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/var/www/forum
+ExecStart=/usr/local/bin/celery -A tasks worker --loglevel=info
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
